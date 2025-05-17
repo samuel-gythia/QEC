@@ -1,7 +1,8 @@
 # Simulate a simple 5-qubit surface code under depolarizing noise using Qiskit
-from qiskit import QuantumCircuit, execute
+from qiskit import QuantumCircuit
 from qiskit_aer import Aer
 from qiskit_aer.noise import NoiseModel, depolarizing_error
+from qiskit import transpile
 
 # Build a placeholder 5-qubit surface code circuit
 # TODO: Replace with actual 5-qubit surface code logic for real QEC simulation
@@ -18,12 +19,15 @@ def build_surface_code():
 def run_simulation(noise_rate):
     noise = NoiseModel()
     err = depolarizing_error(noise_rate, 1)
-    # Apply depolarizing error to all single-qubit and two-qubit gates
-    noise.add_all_qubit_quantum_error(err, ['u3', 'cx'])
+    # Apply depolarizing error to all single-qubit gates
+    noise.add_all_qubit_quantum_error(err, ['u3'])
+    # For two-qubit gates, use a two-qubit depolarizing error
+    err2 = depolarizing_error(noise_rate, 2)
+    noise.add_all_qubit_quantum_error(err2, ['cx'])
     sim = Aer.get_backend('qasm_simulator')
     qc = build_surface_code()
-    # Run the circuit with noise for 500 shots
-    result = execute(qc, sim, noise_model=noise, shots=500).result()
+    tqc = transpile(qc, sim)
+    result = sim.run(tqc, noise_model=noise, shots=500).result()
     counts = result.get_counts()
     # Logical error: measured '1' on the first qubit
     error_rate = counts.get('1', 0) / 500
