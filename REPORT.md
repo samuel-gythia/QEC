@@ -30,13 +30,13 @@ Both implementations are simplified versions suitable for educational purposes:
 ### Performance Comparison
 Based on simulation data, both codes show increasing logical error rates with higher physical noise:
 
-| Noise Rate | Surface Code Error | Shor Code Error | 
-|------------|-------------------|-----------------|
-| 0%         | ~47.2%           | ~Variable       |
-| 1%         | ~51.2%           | ~Variable       |
-| 2%         | ~52.6%           | ~Variable       |
-| 3%         | ~54.0%           | ~Variable       |
-| 5%         | ~58.5%           | ~Variable       |
+| Noise Rate | Surface Code Error | Shor Code Error |
+| ---------- | ------------------ | --------------- |
+| 0%         | ~47.2%             | ~Variable       |
+| 1%         | ~51.2%             | ~Variable       |
+| 2%         | ~52.6%             | ~Variable       |
+| 3%         | ~54.0%             | ~Variable       |
+| 5%         | ~58.5%             | ~Variable       |
 
 *Note: Shor code results vary due to simplified implementation*
 
