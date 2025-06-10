@@ -46,7 +46,7 @@ QEC/
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/QEC.git
+git clone https://github.com/samuel-gythia/QEC.git
 cd QEC
 
 # Create virtual environment
